@@ -1,67 +1,30 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Dealer extends Participant {
+public class Dealer extends Participant implements Observer {
 
-    private final List<Integer> cards = new ArrayList<Integer>( );
     private final String name;
-    //private volatile DealerStrategy dealerStrategy;
 
     public Dealer( String name , DealerStrategy dealerStrategy ) {
 
         super( name , dealerStrategy );
         this.name = name;
-        //this.dealerStrategy = dealerStrategy;
-    }
-
-    /*private void inform( ){
-        setChanged();
-        notifyObservers(name);
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public void takeCard( int cards ) {
-        this.cards.add( cards );
-        checkCards( );
-    }
-
-    public int getSum( ) {
-        int sum = 0;
-
-        for ( Integer card : cards ) {
-            sum = sum + card;
-        }
-
-        return sum;
-    }
-
-    public void printCards( ) {
-
-        System.out.println( name + ": " + Collections.unmodifiableList( cards ) + " - in Summe " + getSum( ) );
 
     }
 
     public void printDealersCard( ) {
 
-        System.out.println( name + ": [" + cards.get( 1 ) + ", X]" );
+        System.out.println( name + ": [" + getCards( ).get( 0 ) + ", X]" );
 
     }
 
-    public void checkCards( ) {
+    @Override
+    public void winner(int state) {
 
-        if (getSum( ) > 21 ) {
-            System.out.println( name + " Busted!");
-            inform();
+        if ( state == 0 ) {
+            System.out.println( " Dealer Lose " );
+        } else if ( state == 1 ) {
+            System.out.println( " Dealer Win " );
+        } else {
+            System.out.println( " Draw " );
         }
-        else if ( getSum( ) == 21 ) {
-            System.out.println( name + " Black Jack");
-            inform();
-        }
-
-    }  */
-
+    }
 }

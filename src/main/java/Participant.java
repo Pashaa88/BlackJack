@@ -25,10 +25,23 @@ public class Participant extends Observable {
         return name;
     }
 
-    public void takeCard( int cards ) {
+    public List<Integer> getCards( ) {
 
+        return cards;
+    }
+
+    public boolean takeCard( int cards ) {
+
+        boolean a = false;
         this.cards.add( cards );
-        checkCards( );
+        if ( this.getSum( ) > 21 ) {
+            a = true;
+        }
+        return a;
+    }
+
+    public void getStatus( ) {
+
     }
 
     public int getSum( ) {
@@ -53,21 +66,16 @@ public class Participant extends Observable {
 
     }
 
-    public void checkCards( ) {
+    public void checkCards( int playerSum , int dealerSum ) {
 
-        if (getSum( ) > 21 ) {
-            System.out.println( name + " Busted!");
-            inform();
+        if ( dealerSum > 21 && playerSum < 21 ) {
+
         }
-        else if ( getSum( ) == 21 ) {
-            System.out.println( name + " Black Jack");
-            inform();
+        else if ( dealerSum < 21 && playerSum > 21 ) {
+
         }
-    }
+        else if ( dealerSum == 21 && playerSum == 21 ) {
 
-    private void inform( ){
-
-        setChanged();
-        notifyObservers(name);
+        }
     }
 }

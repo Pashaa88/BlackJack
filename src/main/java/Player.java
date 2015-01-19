@@ -1,48 +1,20 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
-public class Player extends Participant {
-
-    //private final List<Integer> cards = new ArrayList<Integer>( );
-    //private final String name;
+public class Player extends Participant implements Observer {
 
     public Player( String name ) {
         super( name );
-        //this.name = name;
+
     }
 
-    /*public void takeCard( int cards ) {
-        this.cards.add( cards );
-        checkCards( );
-    }
+    @Override
+    public void winner(int state) {
 
-    public int getSum( ) {
-        int sum = 0;
-
-        for ( Integer card : cards ) {
-            sum = sum + card;
+        if ( state == 0 ) {
+            System.out.println( " Player Win ");
+        } else if ( state == 1 ) {
+            System.out.println( " Player Lose " );
+        } else {
+            System.out.println( " Draw " );
         }
-
-        return sum;
     }
-
-    public void printCards( ) {
-
-        System.out.println( name + ": " + Collections.unmodifiableList(cards) + " - in Summe " + getSum( ) );
-
-    }
-
-    public void checkCards( ) {
-
-        if (getSum( ) > 21 ) {
-            System.out.println( name + " Busted!");
-            inform();
-        }
-        else if ( getSum( ) == 21 ) {
-            System.out.println( name + " Black Jack");
-            inform();
-        }
-
-    } */
 }

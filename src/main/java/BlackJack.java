@@ -9,6 +9,7 @@ public class BlackJack {
         int i = 0;
         int strategie;
         DealerStrategy dealerStrategy = new StrategyCautious( ) ;
+        Grabber subject = new Grabber( );
 
         do {
 
@@ -35,18 +36,22 @@ public class BlackJack {
             }
         } while (strategie > 3);
 
-
         Deck card = new Deck( );
         final Dealer dealer = new Dealer( "Dealer" , dealerStrategy );
         final Player player = new Player( "Player" );
 
-        new Bet(dealer);
-        new Bet(player);
+        subject.register( dealer );
+        subject.register( player );
 
-        dealer.takeCard( card.getCard( i++ ) );
+        boolean b = dealer.takeCard( card.getCard( i++ ) );
         dealer.takeCard( card.getCard( i++ ) );
         player.takeCard( card.getCard( i++ ) );
         player.takeCard( card.getCard( i++ ) );
+
+        dealer.checkCards( dealer.getSum( ) , player.getSum( ) );
+
+        if ( b == true )
+        subject.setState( 0 );
 
         player.printCards( );
         dealer.printDealersCard( );
