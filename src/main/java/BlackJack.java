@@ -8,8 +8,9 @@ public class BlackJack {
 
         int i = 0;
         int strategie;
-        DealerStrategy dealerStrategy = new StrategyCautious( ) ;
+        Context context = new Context( new StrategyCautious( ) );
         Grabber subject = new Grabber( );
+
 
         do {
 
@@ -23,13 +24,13 @@ public class BlackJack {
 
             switch (strategie) {
                 case 1:
-                    dealerStrategy = new StrategyCautious( );
+                    context = new Context( new StrategyCautious( ) );
                     break;
                 case 2:
-                    dealerStrategy = new StrategyBlackJack( );
+                    context = new Context( new StrategyBlackJack( ) );
                     break;
                 case 3:
-                    dealerStrategy = new StrategyTactical( );
+                    context = new Context( new StrategyTactical( ) );
                     break;
                 default:
                     System.err.println("Zahlen von 1 - 3 sollte man eintippen können!");
@@ -37,7 +38,7 @@ public class BlackJack {
         } while (strategie > 3);
 
         Deck card = new Deck( );
-        final Dealer dealer = new Dealer( "Dealer" , dealerStrategy );
+        final Dealer dealer = new Dealer( "Dealer" , context );
         final Player player = new Player( "Player" );
         final Bettor bettor = new Bettor( );
 

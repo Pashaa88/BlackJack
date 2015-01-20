@@ -3,9 +3,9 @@ public class Dealer extends Participant implements Observer {
 
     private final String name;
 
-    public Dealer( String name , DealerStrategy dealerStrategy ) {
+    public Dealer( String name , Context context ) {
 
-        super( name , dealerStrategy );
+        super( name , context );
         this.name = name;
 
     }

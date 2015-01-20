@@ -7,7 +7,7 @@ public class Participant extends Observable {
 
     private final String name;
     private final List<Integer> cards = new ArrayList<Integer>( );
-    private volatile DealerStrategy dealerStrategy;
+    private volatile Context context;
 
 
     public Participant( String name ) {
@@ -16,10 +16,10 @@ public class Participant extends Observable {
 
     }
 
-    public Participant( String name , DealerStrategy dealerStrategy ) {
+    public Participant( String name , Context context ) {
 
         this.name = name;
-        this.dealerStrategy = dealerStrategy;
+        this.context = context;
     }
 
     public String getName( ) {

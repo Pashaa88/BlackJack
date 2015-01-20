@@ -1,6 +1,6 @@
 
 public interface DealerStrategy {
 
-    boolean takeCard( );
+    public int takeCard(  );
 
 }
