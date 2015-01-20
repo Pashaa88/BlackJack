@@ -43,15 +43,12 @@ public class BlackJack {
         subject.register( dealer );
         subject.register( player );
 
-        boolean b = dealer.takeCard( card.getCard( i++ ) );
+        dealer.takeCard( card.getCard( i++ ) );
         dealer.takeCard( card.getCard( i++ ) );
         player.takeCard( card.getCard( i++ ) );
         player.takeCard( card.getCard( i++ ) );
 
         dealer.checkCards( dealer.getSum( ) , player.getSum( ) );
-
-        if ( b == true )
-        subject.setState( 0 );
 
         player.printCards( );
         dealer.printDealersCard( );
@@ -61,7 +58,10 @@ public class BlackJack {
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader( System.in ) );
         String ziehen;
 
-        while( ( ziehen = bufferedReader.readLine( ) ) != null ) {
+        // Methode Wiederholen statt while-Schleife
+
+        while( ( ziehen = bufferedReader.readLine( ) ) != null || player.getSum( ) < 22 ) {
+
             switch( ziehen.toLowerCase() ) {
                 case "y":
                     player.takeCard( i++ );
@@ -70,16 +70,36 @@ public class BlackJack {
                 case "n":
                     while ( dealer.getSum( ) <= 17 ) {
                         dealer.takeCard( i++ );
+                        if ( dealer.getSum( ) > 21 ) {
+                            subject.setState( player.getName( ) );
+                        } else if ( dealer.getSum( ) == 21 ) {
+                            subject.setState( dealer.getName ( ) );
+                        }
                     }
-                    System.out.println( dealer.getSum( ) );
-                    System.out.println( player.getSum( ) );
 
-                    break;
+                    System.out.println( player.getSum( ) );
+                    System.out.println( dealer.getSum( ) );
+
+                    if ( player.getSum( ) > dealer.getSum( ) ) {
+                        subject.setState( player.getName( ) );
+                    } else {
+                        subject.setState( dealer.getName( ) );
+                    }
+
+                    return;
                 default:
                     System.err.println("Bist du blöd!");
-
             }
+
             player.printCards();
+            if ( player.getSum( ) > 21 ) {
+                subject.setState( dealer.getName( ) );
+                return;
+            } else if ( player.getSum( ) == 21 ) {
+                subject.setState( player.getName( ) );
+                return;
+            }
+
             System.out.println("Weitere Karte ziehen? Y oder N");
 
         }

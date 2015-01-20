@@ -9,9 +9,11 @@ public class Participant extends Observable {
     private final List<Integer> cards = new ArrayList<Integer>( );
     private volatile DealerStrategy dealerStrategy;
 
+
     public Participant( String name ) {
 
         this.name = name;
+
     }
 
     public Participant( String name , DealerStrategy dealerStrategy ) {
@@ -30,14 +32,13 @@ public class Participant extends Observable {
         return cards;
     }
 
-    public boolean takeCard( int cards ) {
+    public void takeCard( int cards ) {
 
-        boolean a = false;
         this.cards.add( cards );
+
         if ( this.getSum( ) > 21 ) {
-            a = true;
+
         }
-        return a;
     }
 
     public void getStatus( ) {
@@ -62,7 +63,7 @@ public class Participant extends Observable {
 
     public void printDealersCard( ) {
 
-        System.out.println( name + ": [" + cards.get( 1 ) + ", X]" );
+        System.out.println( name + ": [" + cards.get( 0 ) + ", X]" );
 
     }
 
@@ -77,5 +78,19 @@ public class Participant extends Observable {
         else if ( dealerSum == 21 && playerSum == 21 ) {
 
         }
+    }
+
+    public String checkResult( int playerSum , int dealerSum ) {
+
+        if ( dealerSum > playerSum ) {
+
+            return name;
+
+        }
+        else  {
+
+        }
+
+        return name;
     }
 }

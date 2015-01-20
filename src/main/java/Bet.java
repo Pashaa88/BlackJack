@@ -1,5 +1,10 @@
 
-public class Bet  {
+public class Bet implements Observer {
+
+    @Override
+    public void winner( String name ) {
+
+    }
 
     /*private String wer;
 

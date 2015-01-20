@@ -7,14 +7,9 @@ public class Player extends Participant implements Observer {
     }
 
     @Override
-    public void winner(int state) {
+    public void winner( String name ) {
 
-        if ( state == 0 ) {
-            System.out.println( " Player Win ");
-        } else if ( state == 1 ) {
-            System.out.println( " Player Lose " );
-        } else {
-            System.out.println( " Draw " );
-        }
+        System.out.println( name + " Wins ");
+
     }
 }

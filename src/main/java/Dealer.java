@@ -17,14 +17,9 @@ public class Dealer extends Participant implements Observer {
     }
 
     @Override
-    public void winner(int state) {
+    public void winner( String name ) {
 
-        if ( state == 0 ) {
-            System.out.println( " Dealer Lose " );
-        } else if ( state == 1 ) {
-            System.out.println( " Dealer Win " );
-        } else {
-            System.out.println( " Draw " );
-        }
+        System.out.println( name + " Wins " );
+
     }
 }

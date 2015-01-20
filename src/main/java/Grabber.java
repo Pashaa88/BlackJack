@@ -4,21 +4,21 @@ import java.util.List;
 public class Grabber implements Subject {
 
     private List<Observer> observers = new ArrayList<Observer>( );
-    private int state;
+    private String name;
 
-    public void setState( int state ) {
+    public void setState( String name ) {
 
-        this.state = state;
+        this.name = name;
         notifyObserver( );
     }
 
-    public int getState( ) {
+    public String getName( ) {
 
-        return state;
+        return name;
     }
 
     @Override
-    public void register(Observer o) {
+    public void register( Observer o ) {
 
         observers.add( o );
     }
@@ -35,7 +35,7 @@ public class Grabber implements Subject {
     public void notifyObserver() {
 
          for ( Observer observer : observers ) {
-             observer.winner( state );
+             observer.winner( name );
          }
 
     }

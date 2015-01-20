@@ -2,6 +2,6 @@
 
 public interface Observer {
 
-    void winner( int state );
+    void winner( String name );
 
 }
