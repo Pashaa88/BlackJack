@@ -39,9 +39,11 @@ public class BlackJack {
         Deck card = new Deck( );
         final Dealer dealer = new Dealer( "Dealer" , dealerStrategy );
         final Player player = new Player( "Player" );
+        final Bettor bettor = new Bettor( );
 
         subject.register( dealer );
         subject.register( player );
+        subject.register( bettor );
 
         dealer.takeCard( card.getCard( i++ ) );
         dealer.takeCard( card.getCard( i++ ) );
@@ -53,40 +55,61 @@ public class BlackJack {
         player.printCards( );
         dealer.printDealersCard( );
 
-        System.out.println("Weitere Karte ziehen? Y oder N");
+        if ( dealer.getSum( ) == 21 && player.getSum( ) != 21 ) {
+            dealer.printCards( );
+            subject.setState( dealer.getName( ) );
+            return;
+        } else if ( player.getSum( ) == 21 && dealer.getSum( ) != 21 ) {
+            dealer.printCards( );
+            subject.setState( player.getName( ) );
+            return;
+        } else if ( player.getSum( ) == 21 && dealer.getSum( ) == 21 ) {
+            dealer.printCards( );
+            subject.setState( "No one" );
+            return;
+        }
+
+        System.out.println( "Weitere Karte ziehen? Y oder N" );
 
         BufferedReader bufferedReader = new BufferedReader( new InputStreamReader( System.in ) );
         String ziehen;
-
-        // Methode Wiederholen statt while-Schleife
 
         while( ( ziehen = bufferedReader.readLine( ) ) != null || player.getSum( ) < 22 ) {
 
             switch( ziehen.toLowerCase() ) {
                 case "y":
-                    player.takeCard( i++ );
+                    player.takeCard( card.getCard( i++ ) );
 
                     break;
                 case "n":
-                    while ( dealer.getSum( ) <= 17 ) {
-                        dealer.takeCard( i++ );
+                    while ( dealer.getSum( ) < 17 ) {
+                        dealer.takeCard( card.getCard( i++ ) );
+
                         if ( dealer.getSum( ) > 21 ) {
+                            player.printCards( );
+                            dealer.printCards( );
                             subject.setState( player.getName( ) );
+                            return;
                         } else if ( dealer.getSum( ) == 21 ) {
+                            player.printCards( );
+                            dealer.printCards( );
                             subject.setState( dealer.getName ( ) );
+                            return;
                         }
                     }
 
-                    System.out.println( player.getSum( ) );
-                    System.out.println( dealer.getSum( ) );
+                    player.printCards( );
+                    dealer.printCards( );
 
                     if ( player.getSum( ) > dealer.getSum( ) ) {
                         subject.setState( player.getName( ) );
-                    } else {
+                    } else if ( player.getSum( ) < dealer.getSum( ) ) {
                         subject.setState( dealer.getName( ) );
+                    } else {
+                        subject.setState( "No one" );
                     }
-
                     return;
+
                 default:
                     System.err.println("Bist du blöd!");
             }

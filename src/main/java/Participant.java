@@ -36,9 +36,6 @@ public class Participant extends Observable {
 
         this.cards.add( cards );
 
-        if ( this.getSum( ) > 21 ) {
-
-        }
     }
 
     public void getStatus( ) {
