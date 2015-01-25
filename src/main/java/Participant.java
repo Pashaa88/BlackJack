@@ -13,7 +13,6 @@ public class Participant extends Observable {
     public Participant( String name ) {
 
         this.name = name;
-
     }
 
     public Participant( String name , Context context ) {
@@ -35,11 +34,6 @@ public class Participant extends Observable {
     public void takeCard( int cards ) {
 
         this.cards.add( cards );
-
-    }
-
-    public void getStatus( ) {
-
     }
 
     public int getSum( ) {
@@ -58,36 +52,67 @@ public class Participant extends Observable {
         System.out.println( name + ": " + Collections.unmodifiableList(cards) + " - in Summe " + getSum( ) );
     }
 
-    public void printDealersCard( ) {
+    public void changeAss( Participant participant ) {
 
-        System.out.println( name + ": [" + cards.get( 0 ) + ", X]" );
+        if ( participant.cards.contains( 11 ) == true ) {
 
-    }
-
-    public void checkCards( int playerSum , int dealerSum ) {
-
-        if ( dealerSum > 21 && playerSum < 21 ) {
-
-        }
-        else if ( dealerSum < 21 && playerSum > 21 ) {
-
-        }
-        else if ( dealerSum == 21 && playerSum == 21 ) {
-
+            participant.cards.set( participant.cards.indexOf( 11 ) , 1 );
+            participant.printCards( );
         }
     }
 
-    public String checkResult( int playerSum , int dealerSum ) {
+    public String checkCards( Participant participant ) {
 
-        if ( dealerSum > playerSum ) {
-
-            return name;
-
-        }
-        else  {
-
+        if ( this.getSum( ) > 21 ) {
+            changeAss( this );
         }
 
-        return name;
+        if ( participant.getSum( ) > 21 ) {
+            changeAss( participant );
+        }
+
+        if ( this.getSum() > 21 && participant.getSum() < 21 ) {
+            this.printCards();
+            return participant.getName();
+        } else if ( this.getSum() < 21 && participant.getSum() > 21 ) {
+            this.printCards( );
+            return this.getName();
+        } else if ( this.getSum( ) == 21 && participant.getSum( ) != 21 ) {
+            this.printCards( );
+            return this.getName( );
+        } else if ( participant.getSum( ) == 21 && this.getSum( ) != 21 ) {
+            this.printCards( );
+            return participant.getName( );
+        } else if ( participant.getSum( ) == 21 && this.getSum( ) == 21 ) {
+            this.printCards( );
+            return "No one";
+        }
+
+        return "";
+    }
+
+    public String checkResult( Participant participant ) {
+
+        if ( this.getSum( ) > 21 ) {
+
+            return participant.getName( );
+        } else if ( this.getSum( ) == 21 ) {
+
+            return this.getName( );
+        } else if ( this.getSum() < 21 ) {
+
+            if ( participant.getSum( ) > this.getSum( ) ) {
+
+                return participant.getName( );
+            } else if ( participant.getSum( ) < this.getSum( ) ) {
+
+                return this.getName( );
+            } else if ( participant.getSum( ) == this.getSum( ) ) {
+
+                return "No one";
+            }
+        }
+
+        return "No one";
     }
 }

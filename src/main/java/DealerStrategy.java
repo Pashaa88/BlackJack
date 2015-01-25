@@ -1,6 +1,6 @@
 
 public interface DealerStrategy {
 
-    public int takeCard(  );
+    public String takeDealerCard( Player player , Dealer dealer , Deck card , int i );
 
 }

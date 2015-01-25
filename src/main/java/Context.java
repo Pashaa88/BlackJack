@@ -1,15 +1,15 @@
 
 public class Context {
 
-    private DealerStrategy dealerStrategy;
+    DealerStrategy dealerStrategy;
 
     public Context( DealerStrategy dealerStrategy ) {
 
         this.dealerStrategy = dealerStrategy;
     }
 
-    public int executeStrategy( ) {
-        return dealerStrategy.takeCard( );
+    public String executeStrategy( Player player , Dealer dealer , Deck card , int i) {
+        return dealerStrategy.takeDealerCard( player , dealer , card , i );
     }
 
 }
