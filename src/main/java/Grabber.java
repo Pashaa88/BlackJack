@@ -1,10 +1,15 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Grabber implements Subject {
 
     private List<Observer> observers = new ArrayList<Observer>( );
     private String name;
+
+    public List<Observer> getParticipants( ) {
+        return Collections.unmodifiableList(observers);
+    }
 
     public void setState( String name ) {
 
@@ -28,15 +33,13 @@ public class Grabber implements Subject {
 
         int observerIndex = observers.indexOf( o );
         observers.remove( observerIndex );
-
     }
 
     @Override
-    public void notifyObserver() {
+    public void notifyObserver( ) {
 
          for ( Observer observer : observers ) {
-             observer.winner( name );
+             observer.winner( getName( ) );
          }
-
     }
 }

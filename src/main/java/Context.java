@@ -12,4 +12,7 @@ public class Context {
         return dealerStrategy.takeDealerCard( player , dealer , card , i );
     }
 
+    public DealerStrategy getDealerStrategy() {
+        return dealerStrategy;
+    }
 }

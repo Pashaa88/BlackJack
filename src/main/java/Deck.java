@@ -27,7 +27,9 @@ public class Deck {
     }
 
     public int getCard( int cardNumber ) {
+
         return deck[ cardNumber ];
     }
+
 
 }

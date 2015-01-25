@@ -5,7 +5,6 @@ public class Bettor implements Observer {
     public void winner( String name ) {
 
         System.out.println( "Hey Bettor, " + name + " Wins " );
-
     }
 
 }

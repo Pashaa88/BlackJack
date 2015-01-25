@@ -18,4 +18,9 @@ public class StrategyTactical implements DealerStrategy {
         return dealer.checkResult( player );
 
     }
+
+    @Override
+    public String getStrategyName() {
+        return "Tactical Strategy";
+    }
 }

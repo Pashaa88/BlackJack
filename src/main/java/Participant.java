@@ -1,14 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Observable;
 
-public class Participant extends Observable {
+public class Participant {
 
     private final String name;
     private final List<Integer> cards = new ArrayList<Integer>( );
     private volatile Context context;
-
 
     public Participant( String name ) {
 
@@ -114,5 +112,10 @@ public class Participant extends Observable {
         }
 
         return "No one";
+    }
+
+    public void clearCards( ) {
+
+        cards.clear( );
     }
 }

@@ -1,7 +1,6 @@
 
 public class StrategyCautious implements DealerStrategy {
 
-
     @Override
     public String takeDealerCard( Player player , Dealer dealer , Deck card , int i ) {
 
@@ -17,5 +16,10 @@ public class StrategyCautious implements DealerStrategy {
         dealer.printCards( );
 
         return dealer.checkResult( player );
+    }
+
+    @Override
+    public String getStrategyName() {
+        return "Cautious Strategy";
     }
 }
