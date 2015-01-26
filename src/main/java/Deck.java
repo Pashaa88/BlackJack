@@ -31,5 +31,10 @@ public class Deck {
         return deck[ cardNumber ];
     }
 
+    public Integer[ ] getDeck( ) {
+
+        return deck;
+    }
+
 
 }

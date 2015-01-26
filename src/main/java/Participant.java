@@ -19,6 +19,11 @@ public class Participant {
         this.context = context;
     }
 
+    public List<Integer> getCard( ) {
+
+        return Collections.unmodifiableList( cards );
+    }
+
     public String getName( ) {
 
         return name;

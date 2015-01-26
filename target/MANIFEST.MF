@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+Implementation-Title: Objekt-Technologien
+Implementation-Version: 02-SNAPSHOT
+Implementation-Vendor-Id: com.cedarsoft
 Build-Jdk: 1.8.0_25
 Built-By: karatee
+Specification-Title: Objekt-Technologien
 Created-By: IntelliJ IDEA
+Specification-Version: 02-SNAPSHOT
 

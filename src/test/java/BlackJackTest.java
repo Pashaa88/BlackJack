@@ -41,7 +41,7 @@ public class BlackJackTest {
         Dealer dealer = new Dealer( "Dealer" , context );
         Player player = new Player( "Player" );
 
-        // Check if strategy
+        // Check if dealer play with minimum 17
         for ( int i = 0 ; i < 1000 ; i++ ) {
 
             Deck card = new Deck( );
@@ -62,10 +62,12 @@ public class BlackJackTest {
     @Test
     public void BlackJackStrategyTest( ) throws Exception {
 
+        // Create dealer with blackjack strategy and a player
         Context context = new Context( new StrategyBlackJack( ) );
         Dealer dealer = new Dealer( "Dealer" , context );
         Player player = new Player( "Player" );
 
+        // Check if dealer play with minimum 21
         for ( int i = 0 ; i < 1000 ; i++ ) {
 
             Deck card = new Deck( );
@@ -86,10 +88,12 @@ public class BlackJackTest {
     @Test
     public void TacticalStrategyTest( ) throws Exception {
 
-        Context context = new Context( new StrategyBlackJack( ) );
+        // Create dealer with tactical strategy and a player
+        Context context = new Context( new StrategyTactical( ) );
         Dealer dealer = new Dealer( "Dealer" , context );
         Player player = new Player( "Player" );
 
+        // Check if dealer has more then player and less then 21
         for ( int i = 0 ; i < 1000 ; i++ ) {
 
             Deck card = new Deck( );
@@ -112,8 +116,8 @@ public class BlackJackTest {
     @Test
     public void ObserverRegisteredTest( ) throws Exception {
 
+        // Check if length of arraylist is correct with register and unregister player, dealer, bettor
         Grabber grabber = new Grabber( );
-
         Dealer dealer = new Dealer( "Dealer" , new Context( new StrategyBlackJack( ) ) );
         Player player = new Player( "Player" );
 
@@ -126,17 +130,17 @@ public class BlackJackTest {
 
         grabber.register( player );
 
-        assertEquals( 2 , grabber.getParticipants( ).size( ) );
-        assertEquals( "Dealer" , grabber.getParticipants( ).get( 0 ).getName( ) );
-        assertEquals( "Player" , grabber.getParticipants( ).get( 1 ).getName( ) );
+        assertEquals(2, grabber.getParticipants().size());
+        assertEquals("Dealer", grabber.getParticipants().get(0).getName());
+        assertEquals("Player", grabber.getParticipants().get(1).getName());
 
         Bettor bettor1 = new Bettor( "Bettor1" );
-        grabber.register( bettor1 );
+        grabber.register(bettor1);
 
-        assertEquals( 3 , grabber.getParticipants().size() );
-        assertEquals( "Dealer" , grabber.getParticipants( ).get( 0 ).getName( ) );
-        assertEquals( "Player" , grabber.getParticipants( ).get( 1 ).getName() );
-        assertEquals( "Bettor1" , grabber.getParticipants( ).get( 2 ).getName( ) );
+        assertEquals(3, grabber.getParticipants().size());
+        assertEquals("Dealer", grabber.getParticipants().get(0).getName());
+        assertEquals("Player", grabber.getParticipants().get(1).getName());
+        assertEquals("Bettor1", grabber.getParticipants().get(2).getName());
 
         Bettor bettor2 = new Bettor( "Bettor2" );
         grabber.register( bettor2 );
@@ -158,6 +162,7 @@ public class BlackJackTest {
     @Test
     public void ObserverWinnerTest( ) throws Exception {
 
+        // Check if the Observer inform the correct winner to Listener
         Context context = new Context( new StrategyCautious( ) );
         Dealer dealer = new Dealer( "Dealer" , context );
         Player player = new Player( "Player" );
@@ -185,6 +190,9 @@ public class BlackJackTest {
         if ( ( player.getSum( ) < 22 && player.getSum( ) > dealer.getSum( ) ) || dealer.getSum( ) > 21 ) {
 
             assertEquals( "Player" , grabber.getName( ) );
+        } else if ( player.getSum( ) == dealer.getSum( ) ) {
+
+            assertEquals( "No one" , grabber.getName( ) );
         } else {
 
             assertEquals( "Dealer" , grabber.getName( ) );
@@ -192,22 +200,9 @@ public class BlackJackTest {
     }
 
     @Test
-    public void ObserverNotifyAllTest( ) throws Exception {
-
-        Context context = new Context( new StrategyCautious( ) );
-        Dealer dealer = new Dealer( "Dealer" , context );
-        Player player = new Player( "Player" );
-        Bettor bettor = new Bettor( "Bettor" );
-        Grabber grabber = new Grabber( );
-
-        grabber.setState( "Player" );
-
-        //assertThat( "Player" , dealer.winner( "Player" ) );
-    }
-
-    @Test
     public void DealerBuilderTest( ) throws Exception {
 
+        // Check if builder has the last given name and strategy in dealer
         Context context = new Context( new StrategyTactical( ) );
         DealerBuilder dealerBuilder = new DealerBuilder( );
         dealerBuilder.setName( "Max" );
@@ -221,6 +216,28 @@ public class BlackJackTest {
 
         assertEquals( "Michael" , dealer.getName( ) );
         assertEquals( "BlackJack Strategy" , context.getDealerStrategy( ).getStrategyName( ) );
+
+    }
+
+    @Test
+    public void DeckCardTest( ) throws Exception {
+
+        // Check if taken card is correct card of deck
+        Player player = new Player( "Player" );
+        Deck card = new Deck( );
+
+        int cardNumber = 0;
+
+        for ( int i = 0 ; i < card.getDeck( ).length ; i++ ) {
+
+            player.takeCard( card.getCard( cardNumber++ ) );
+
+            assertEquals( (long)card.getCard( i ) , (long)player.getCard( ).get( i ) );
+        }
+
+        assertEquals( 52 , player.getCards( ).size( ) );
+        assertEquals( 380 , player.getSum( ) );
+
 
     }
 }
