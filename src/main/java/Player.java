@@ -7,9 +7,9 @@ public class Player extends Participant implements Observer {
     }
 
     @Override
-    public void winner( String name ) {
+    public void winner( String winnerName ) {
 
-        System.out.println( "Hey Player, " + name + " Wins ");
+        System.out.println( "Hey Player, " + winnerName + " Wins ");
 
     }
 }

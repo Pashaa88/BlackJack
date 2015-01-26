@@ -15,8 +15,9 @@ public class Dealer extends Participant implements Observer {
     }
 
     @Override
-    public void winner( String name ) {
+    public void winner( String winnerName ) {
 
-        System.out.println( "Hey Dealer, " + name + " Wins " );
+        System.out.println( "Hey Dealer, " + winnerName + " Wins " );
     }
+
 }

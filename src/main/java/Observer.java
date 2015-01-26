@@ -2,6 +2,7 @@
 
 public interface Observer {
 
-    void winner( String name );
+    void winner( String winnerName );
+    String getName( );
 
 }

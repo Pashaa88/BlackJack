@@ -1,10 +1,22 @@
 
 public class Bettor implements Observer {
 
-    @Override
-    public void winner( String name ) {
+    final public String name;
 
-        System.out.println( "Hey Bettor, " + name + " Wins " );
+    public Bettor( String name ) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName( ) {
+
+        return this.name;
+    }
+
+    @Override
+    public void winner( String winnerName ) {
+
+        System.out.println( "Hey Bettor, " + winnerName + " Wins " );
     }
 
 }

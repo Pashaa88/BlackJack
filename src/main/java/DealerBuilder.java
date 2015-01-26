@@ -8,15 +8,18 @@ public class DealerBuilder {
 
     }
 
-    public void setName(String name) {
+    public void setName( String name ) {
+
         this.name = name;
     }
 
-    public void setContext(Context context) {
+    public void setContext( Context context ) {
+
         this.context = context;
     }
 
     public Dealer create( ) {
+
         return new Dealer( name , context );
     }
 }
