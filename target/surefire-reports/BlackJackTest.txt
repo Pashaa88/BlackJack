@@ -1,10 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: BlackJackTest
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.194 sec <<< FAILURE! - in BlackJackTest
-DealerBuilderTest(BlackJackTest)  Time elapsed: 0.01 sec  <<< FAILURE!
-org.junit.ComparisonFailure: expected:<[BlackJack] Strategy> but was:<[Tactical] Strategy>
-	at org.junit.Assert.assertEquals(Assert.java:115)
-	at org.junit.Assert.assertEquals(Assert.java:144)
-	at BlackJackTest.DealerBuilderTest(BlackJackTest.java:223)
-
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.167 sec - in BlackJackTest

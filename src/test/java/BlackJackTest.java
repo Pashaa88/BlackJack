@@ -214,7 +214,7 @@ public class BlackJackTest {
         dealerBuilder.setName( "Moritz" );
         dealerBuilder.setContext( context );
         dealerBuilder.setName("Michael");
-        context = new Context( new StrategyTactical( ) );
+        context = new Context( new StrategyBlackJack( ) );
         dealerBuilder.setContext( context );
 
         Dealer dealer = dealerBuilder.create( );
